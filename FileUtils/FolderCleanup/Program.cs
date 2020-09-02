@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
-using System.Security;
 using Microsoft.Extensions.Configuration;
 
 namespace FolderCleanup
@@ -10,70 +9,42 @@ namespace FolderCleanup
     {
         private static void Main()
         {
-            var appSettings = GetAppConfigs();
-            var errors = new List<string>();
+            var appConfigs = GetAppConfigs();
+            var errors = new Collection<string>();
 
             // call DeleteFiles() for each dir
-            foreach (var dir in appSettings)
+            foreach (var cleanupDir in appConfigs.CleanupDirs)
             {
-                
+                FileUtils.DeleteFiles(cleanupDir.Dir, cleanupDir.DeleteFilesOlderThanDays, errors);
             }
 
             // handle errors..
-            if (errors.Count > 0)
+            if (errors.Count == 0)
             {
-                foreach (var error in errors)
-                {
-                    Console.WriteLine(error);
-                }
-
-                Console.ReadLine();
-            }
-            
-        }
-
-        private static List<string> DeleteFiles(string dir, int days)
-        {
-            var files = Directory.EnumerateFiles(dir, "*.*", SearchOption.AllDirectories);
-            var notDeleted = new List<string>();
-            
-            foreach (var file in files)
-            {
-                var fi = new FileInfo(file);
-
-                if (fi.CreationTime >= DateTime.Now.AddDays(days))
-                {
-                    continue;
-                }
-
-                try
-                {
-                    fi.Delete();
-                }
-                catch(IOException ex)
-                {
-                    notDeleted.Add($"File {fi.Name} can't be deleted: file is in use.");
-                }
-                catch(SecurityException ex)
-                {
-                    notDeleted.Add($"File {fi.Name} can't be deleted: insufficient permission.");
-                }
-                catch(UnauthorizedAccessException ex)
-                {
-                    notDeleted.Add($"File {fi.Name} can't be deleted: access denied.");
-                }
+                Environment.Exit(0);
             }
 
-            return notDeleted;
+            foreach (var error in errors)
+            {
+                Console.WriteLine(error);
+            }
+
+            Console.ReadLine();
+            Environment.Exit(-1);
         }
-        
-        private static IConfigurationSection GetAppConfigs()
+
+        private static AppSettings GetAppConfigs()
         {
-            IConfiguration configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", true, true)
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
                 .Build();
 
-            return configuration.GetSection("Settings");
+            var appSettings = new AppSettings();
+            
+            builder.Bind("AppSettings", appSettings);
+
+            return appSettings;
         }
     }
 }

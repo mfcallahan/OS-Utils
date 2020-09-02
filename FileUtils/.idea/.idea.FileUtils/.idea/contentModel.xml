@@ -6,9 +6,11 @@
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="FileUtils.sln" t="IncludeFlat" />
       <e p="FolderCleanup" t="IncludeRecursive">
-        <e p="CleanupDir.cs" t="Include" />
+        <e p="AppSettings.cs" t="Include" />
+        <e p="FileUtils.cs" t="Include" />
         <e p="FolderCleanup.csproj" t="IncludeRecursive" />
         <e p="Program.cs" t="Include" />
+        <e p="README.md" t="Include" />
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
