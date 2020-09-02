@@ -3,6 +3,14 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <IsPackable>false</IsPackable>
+        <Authors>Matt Callahan</Authors>
+        <Description>Clean up old files in folders</Description>
+        <Company>mfcallahan</Company>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DebugType>none</DebugType>
     </PropertyGroup>
 
     <ItemGroup>

@@ -23,19 +23,18 @@ namespace FolderCleanup
                 try
                 {
                     fi.Delete();
-                    Console.WriteLine($"{fi.Name} deleted.");
                 }
                 catch(IOException)    
                 {
-                    errors.Add($"File {fi.Name} can't be deleted: file is in use.");
+                    errors.Add($"File \"{fi.Name}\" can't be deleted: file is in use.");
                 }
                 catch(SecurityException)
                 {
-                    errors.Add($"File {fi.Name} can't be deleted: insufficient permission.");
+                    errors.Add($"File \"{fi.Name}\" can't be deleted: insufficient permission.");
                 }
                 catch(UnauthorizedAccessException)
                 {
-                    errors.Add($"File {fi.Name} can't be deleted: access denied.");
+                    errors.Add($"File \"{fi.Name}\" can't be deleted: access denied.");
                 }
             }
         }
