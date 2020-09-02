@@ -9,12 +9,14 @@ namespace FolderCleanup
     {
         private static void Main()
         {
+            Console.WriteLine("Starting FileCleanup...");
             var appConfigs = GetAppConfigs();
             var errors = new Collection<string>();
 
             // call DeleteFiles() for each dir
             foreach (var cleanupDir in appConfigs.CleanupDirs)
             {
+                Console.WriteLine($"Cleaning dir: {cleanupDir.Dir}");
                 FileUtils.DeleteFiles(cleanupDir.Dir, cleanupDir.DeleteFilesOlderThanDays, errors);
             }
 

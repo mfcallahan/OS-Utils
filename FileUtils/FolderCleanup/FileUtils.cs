@@ -15,7 +15,7 @@ namespace FolderCleanup
             {
                 var fi = new FileInfo(file);
 
-                if (fi.CreationTime <= DateTime.Now.AddDays(days))
+                if (fi.CreationTime >= DateTime.Now.AddDays(-days))
                 {
                     continue;
                 }
