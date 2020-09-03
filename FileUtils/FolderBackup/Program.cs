@@ -1,12 +1,14 @@
-﻿using System;
+﻿using System.IO;
+using AppConfiguration;
+using Microsoft.Extensions.Configuration;
 
 namespace FolderBackup
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            Console.WriteLine("Hello World!");
+            var appSettings = Configuration.GetAppSettings<AppSettings>(Directory.GetCurrentDirectory(), "AppConfiguration");
         }
     }
 }

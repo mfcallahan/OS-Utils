@@ -12,10 +12,10 @@ namespace FolderCleanup
         {
             Console.WriteLine("Starting FileCleanup...");
 
-            var appConfigs = GetAppConfigs();
+            var appSettings = Configuration.GetAppSettings<AppSettings>(Directory.GetCurrentDirectory(), "AppConfiguration");
             var errors = new Collection<string>();
 
-            foreach (var cleanupDir in appConfigs.CleanupDirs)
+            foreach (var cleanupDir in appSettings.CleanupDirs)
             {
                 Console.WriteLine($"Cleaning dir: {cleanupDir.Dir}");
                 FileUtils.DeleteFiles(cleanupDir.Dir, cleanupDir.DeleteFilesOlderThanDays, errors);
@@ -34,17 +34,6 @@ namespace FolderCleanup
 
             Console.ReadLine();
             Environment.Exit(-1);
-        }
-
-        private static AppSettings GetAppConfigs()
-        {
-            var builder = Configuration.GetAppConfig(Directory.GetCurrentDirectory());
-
-            var appSettings = new AppSettings();
-            
-            builder.Bind("AppConfiguration", appSettings);
-
-            return appSettings;
         }
     }
 }
