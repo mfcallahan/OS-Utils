@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using AppConfiguration;
-using Microsoft.Extensions.Configuration;
 
 namespace FolderCleanup
 {
@@ -12,13 +11,18 @@ namespace FolderCleanup
         {
             Console.WriteLine("Starting FileCleanup...");
 
-            var appSettings = Configuration.GetAppSettings<AppSettings>(Directory.GetCurrentDirectory(), "AppConfiguration");
+            var appSettings = Configuration.GetAppSettings<AppSettings>(
+                    Directory.GetCurrentDirectory(),
+                    "appsettings.json",
+                    "AppConfiguration"
+                );
+ 
             var errors = new Collection<string>();
 
             foreach (var cleanupDir in appSettings.CleanupDirs)
             {
                 Console.WriteLine($"Cleaning dir: {cleanupDir.Dir}");
-                FileUtils.DeleteFiles(cleanupDir.Dir, cleanupDir.DeleteFilesOlderThanDays, errors);
+                FileOperations.DeleteFiles(cleanupDir.Dir, cleanupDir.DeleteFilesOlderThanDays, errors);
             }
             
             if (errors.Count == 0)

@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using AppConfiguration;
-using Microsoft.Extensions.Configuration;
 
 namespace FolderBackup
 {
@@ -8,7 +7,11 @@ namespace FolderBackup
     {
         private static void Main()
         {
-            var appSettings = Configuration.GetAppSettings<AppSettings>(Directory.GetCurrentDirectory(), "AppConfiguration");
+            var appSettings = Configuration.GetAppSettings<AppSettings>(
+                    Directory.GetCurrentDirectory(),
+                    "appsettings.json",
+                    "AppConfiguration"
+                );
         }
     }
 }

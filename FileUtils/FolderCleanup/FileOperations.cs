@@ -5,7 +5,7 @@ using System.Security;
 
 namespace FolderCleanup
 {
-    public static class FileUtils
+    public static class FileOperations
     {
         public static void DeleteFiles(string dir, int days, ICollection<string> errors)
         {
