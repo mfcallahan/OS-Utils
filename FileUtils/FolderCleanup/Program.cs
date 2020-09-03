@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using AppConfiguration;
 using Microsoft.Extensions.Configuration;
 
 namespace FolderCleanup
@@ -37,14 +38,11 @@ namespace FolderCleanup
 
         private static AppSettings GetAppConfigs()
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
+            var builder = Configuration.GetAppConfig(Directory.GetCurrentDirectory());
 
             var appSettings = new AppSettings();
             
-            builder.Bind("AppSettings", appSettings);
+            builder.Bind("AppConfiguration", appSettings);
 
             return appSettings;
         }

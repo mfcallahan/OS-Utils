@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderCleanup", "FolderClea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderBackup", "FolderBackup\FolderBackup.csproj", "{049BDCC4-2716-4B33-94ED-37BE4A7CD56B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConfiguration", "AppConfiguration\AppConfiguration.csproj", "{DCF77D23-FAB4-4D6D-B467-70A5D7F1BBC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{049BDCC4-2716-4B33-94ED-37BE4A7CD56B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{049BDCC4-2716-4B33-94ED-37BE4A7CD56B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{049BDCC4-2716-4B33-94ED-37BE4A7CD56B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCF77D23-FAB4-4D6D-B467-70A5D7F1BBC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF77D23-FAB4-4D6D-B467-70A5D7F1BBC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF77D23-FAB4-4D6D-B467-70A5D7F1BBC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF77D23-FAB4-4D6D-B467-70A5D7F1BBC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
