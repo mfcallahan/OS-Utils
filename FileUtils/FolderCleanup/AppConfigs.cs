@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace FolderCleanup
 {
-    public class AppSettings
+    public class AppConfigs
     {
         public IEnumerable<CleanupDirs> CleanupDirs { get; set; }
     }

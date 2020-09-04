@@ -11,12 +11,12 @@ namespace FolderCleanup
         {
             Console.WriteLine("Starting FileCleanup...");
 
-            var appSettings = Configuration.GetAppSettings<AppSettings>(
+            var appSettings = Configuration.GetAppSettings<AppConfigs>(
                     Directory.GetCurrentDirectory(),
                     "appsettings.json",
-                    "AppConfiguration"
+                    "Configs"
                 );
- 
+
             var errors = new Collection<string>();
 
             foreach (var cleanupDir in appSettings.CleanupDirs)

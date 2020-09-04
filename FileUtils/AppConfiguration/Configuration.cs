@@ -4,17 +4,16 @@ namespace AppConfiguration
 {
     public static class Configuration
     {
-        public static T GetAppSettings<T>(string basePath, string appSettingsFileName, string key) where T : new()
+        public static T GetAppSettings<T>(string basePath, string appSettingsFileName, string key) where T : class, new()
         {
+            var configBuilder = GetConfiguration(basePath, appSettingsFileName);
             var appSettings = new T();
-            
-            var config = GetAppConfiguration(basePath, appSettingsFileName);
-            config.Bind(key, appSettings);
+            configBuilder.Bind(key, appSettings);
 
             return appSettings;
         }
-        
-        private static IConfigurationRoot GetAppConfiguration(string basePath, string appSettingsFileName)
+
+        private static IConfigurationRoot GetConfiguration(string basePath, string appSettingsFileName)
         {
             return new ConfigurationBuilder()
                 .SetBasePath(basePath)
