@@ -1,6 +1,6 @@
 namespace FolderBackup
 {
-    public class AppConfigs
+    public class AppSettings
     {
         
     }

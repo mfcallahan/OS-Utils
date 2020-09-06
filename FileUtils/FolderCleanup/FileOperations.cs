@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security;
+using NLog;
 
 namespace FolderCleanup
 {
     public static class FileOperations
     {
-        public static void DeleteFiles(string dir, int days, ICollection<string> errors)
+        public static void DeleteFiles(string dir, int days, Logger logger)
         {
             var files = Directory.EnumerateFiles(dir, "*.*", SearchOption.AllDirectories);
 
@@ -26,15 +27,15 @@ namespace FolderCleanup
                 }
                 catch(IOException)    
                 {
-                    errors.Add($"File \"{fi.Name}\" can't be deleted: file is in use.");
+                    logger.Error($"File \"{fi.Name}\" can't be deleted: file is in use.");
                 }
                 catch(SecurityException)
                 {
-                    errors.Add($"File \"{fi.Name}\" can't be deleted: insufficient permission.");
+                    logger.Error($"File \"{fi.Name}\" can't be deleted: insufficient permission.");
                 }
                 catch(UnauthorizedAccessException)
                 {
-                    errors.Add($"File \"{fi.Name}\" can't be deleted: access denied.");
+                    logger.Error($"File \"{fi.Name}\" can't be deleted: access denied.");
                 }
             }
         }

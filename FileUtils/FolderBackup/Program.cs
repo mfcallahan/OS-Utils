@@ -7,7 +7,7 @@ namespace FolderBackup
     {
         private static void Main()
         {
-            var appSettings = Configuration.GetAppSettings<AppConfigs>(
+            var appSettings = Configuration.GetAppSettings<AppSettings>(
                     Directory.GetCurrentDirectory(),
                     "appsettings.json",
                     "Configs"
